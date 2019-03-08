@@ -53,9 +53,14 @@ public class PlayerManager : MonoBehaviour
     public void AddNewPlayer(Player newPlayer)
     {
         players.Add(newPlayer);
+
+        for (int i = 0; i < players.Count; i++)
+        {
+            players[i].SetPlayerID(i);
+        }
     }
 
-    public void OnTurnAdvanced() //TODO: call this when an event from the turn manager starts.
+    public void OnTurnAdvanced()
     {
         currentPlayerIndex++;
 
