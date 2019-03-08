@@ -9,7 +9,7 @@ public class PlayerManager : MonoBehaviour
     public static PlayerManager instance { get; private set; }
 
     private int maxPlayers = 4;
-    private int currentPlayerIndex = 0;
+    private int currentPlayerIndex = -1;
 
     private List<Player> players = new List<Player>();
 
@@ -31,6 +31,11 @@ public class PlayerManager : MonoBehaviour
         {
             instance = null;
         }
+    }
+
+    private void Start()
+    {
+        TurnManager.instance.OnTurnAdvanced.AddListener(OnTurnAdvanced);
     }
 
     public void SetMaxPlayers(int newMaxPlayers)
@@ -55,16 +60,16 @@ public class PlayerManager : MonoBehaviour
         players.Add(newPlayer);
     }
 
-    public void OnTurnAdvanced() //TODO: call this when an event from the turn manager starts.
+    public void OnTurnAdvanced()
     {
         currentPlayerIndex++;
 
-        if (currentPlayerIndex > maxPlayers - 1)
+        if (currentPlayerIndex > maxPlayers - 1 || currentPlayerIndex < 0)
         {
             currentPlayerIndex = 0;
         }
 
-        Debug.Log("it's player " + currentPlayerIndex + "'s turn!");
+        Debug.Log("it's player " + (currentPlayerIndex + 1) + "'s turn!");
     }
 
     public Player GetPlayerByIndex(int playerIndex)
