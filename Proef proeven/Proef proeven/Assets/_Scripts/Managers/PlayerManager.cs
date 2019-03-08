@@ -58,6 +58,11 @@ public class PlayerManager : MonoBehaviour
     public void AddNewPlayer(Player newPlayer)
     {
         players.Add(newPlayer);
+
+        for (int i = 0; i < players.Count; i++)
+        {
+            players[i].SetPlayerID(i);
+        }
     }
 
     public void OnTurnAdvanced()
