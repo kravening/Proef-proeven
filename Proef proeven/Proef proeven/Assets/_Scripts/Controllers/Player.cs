@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    private PlayerID playerID;
-    private GridPosition playerPosition;
+    private PlayerID playerID = new PlayerID();
+    private GridPosition playerPosition = new GridPosition();
 
     public void SetPlayerID(int newPlayerID)
     {
