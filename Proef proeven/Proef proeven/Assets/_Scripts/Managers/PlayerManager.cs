@@ -11,7 +11,7 @@ public class PlayerManager : MonoBehaviour
     private int maxPlayers = 4;
     private int currentPlayerIndex = 0;
 
-    private List<GameObject> players = new List<GameObject>(); //TODO: change gameObject list to the player class
+    private List<Player> players = new List<Player>();
 
     private void Awake()
     {
@@ -50,7 +50,7 @@ public class PlayerManager : MonoBehaviour
         maxPlayers = newMaxPlayers;
     }
 
-    public void AddNewPlayer(GameObject newPlayer)
+    public void AddNewPlayer(Player newPlayer)
     {
         players.Add(newPlayer);
     }
@@ -63,9 +63,11 @@ public class PlayerManager : MonoBehaviour
         {
             currentPlayerIndex = 0;
         }
+
+        Debug.Log("it's player " + currentPlayerIndex + "'s turn!");
     }
 
-    public GameObject GetPlayerByIndex(int playerIndex)
+    public Player GetPlayerByIndex(int playerIndex)
     {
 
         if (playerIndex < 0)
@@ -81,7 +83,7 @@ public class PlayerManager : MonoBehaviour
         return players[playerIndex];
     }
 
-    public GameObject GetCurrentPlayer()
+    public Player GetCurrentPlayer()
     {
         if (players[currentPlayerIndex] != null)
         {
