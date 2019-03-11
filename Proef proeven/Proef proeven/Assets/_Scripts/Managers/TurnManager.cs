@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Events;
 
 public class TurnManager : MonoBehaviour
@@ -8,7 +6,7 @@ public class TurnManager : MonoBehaviour
 
     public static TurnManager instance { get; private set; }
 
-    private int currentTurn = 1;
+    private int _currentTurn = 1;
 
     public UnityEvent OnTurnAdvanced;
 
@@ -49,11 +47,11 @@ public class TurnManager : MonoBehaviour
 
     private void IncrementCurrentTurn()
     {
-        currentTurn++;
+        _currentTurn++;
     }
 
     public int GetCurrentTurn()
     {
-        return currentTurn;
+        return _currentTurn;
     }
 }

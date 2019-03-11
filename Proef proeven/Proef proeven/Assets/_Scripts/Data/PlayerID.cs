@@ -1,16 +1,14 @@
-﻿using UnityEngine;
-
-public class PlayerID
+﻿public class PlayerID
 {
-    private int playerID = 0;
+    private int _playerID = 0;
 
     public int GetPlayerID()
     {
-        return playerID;
+        return _playerID;
     }
 
     public void SetPlayerID(int newPlayerID)
     {
-        playerID = newPlayerID;
+        _playerID = newPlayerID;
     }
 }
