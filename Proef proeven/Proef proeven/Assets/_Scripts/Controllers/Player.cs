@@ -2,9 +2,12 @@
 
 public class Player : MonoBehaviour
 {
+    private const int DEFAULT_POSITION_HEIGHT = 1;
+
     private PlayerID _playerID = new PlayerID();
     private GridPosition _playerPosition = new GridPosition();
     private playerBehaviour _playerBehaviour = new playerBehaviour();
+
 
     private void Start()
     {
@@ -50,7 +53,8 @@ public class Player : MonoBehaviour
 
     private void OnPositionChanged()// tell the movement behaviour to move to the new coordinates
     {
-        _playerBehaviour.MovePlayer(new Vector3(_playerPosition.x,_playerPosition.y,0)); // kinda pseudo code
+        _playerBehaviour.MovePlayer(new Vector3(_playerPosition.x, DEFAULT_POSITION_HEIGHT ,_playerPosition.y)); // kinda pseudo code
+        //TODO: Get correct vec3 position from the grid.
     }
 
     public int BattleNumberGenrator()
