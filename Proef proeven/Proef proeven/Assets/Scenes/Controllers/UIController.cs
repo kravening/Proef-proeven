@@ -1,21 +1,30 @@
 ﻿using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class UIController : MonoBehaviour
 {
     //Over het algemeen benaming better doen. Het is nu echt ruk
-    [SerializeField] private GameObject ReadyCheckButton = null;
-    [SerializeField] private GameObject TurnUI = null;
-    [SerializeField ]private GameObject WinUIImage = null;
-    [SerializeField] private Text TurnUICards = null;
+
+    [Header("GameObjects")]
+    [SerializeField] private GameObject readyCheckButton = null;
+    [SerializeField] private GameObject turnUi = null;
+    [SerializeField] private GameObject winUiImage = null;
+    [SerializeField] private GameObject turnCards = null;
     
+    [Header("UI Text")]  
+    [SerializeField] private Text TurnLives = null;
+    
+    [Header("Arrays")]
     [SerializeField] private Sprite[] WinUI = null;
     [SerializeField] private Sprite[] TurnImage = null;
-    [SerializeField] private Text[] PlayerCards = null;
+    [SerializeField] private Text[] AmountOfPlayerCards = null;
+    [SerializeField] private Text[] AmountOfLivesText = null;
 
     
     public static UIController instance;
     private static int Cards;
+    private static int Lives;
     
     private void Awake()
     {
@@ -44,56 +53,66 @@ public class UIController : MonoBehaviour
 
     private void Init()
     {
-        AmountOfCards(2);
+        SetPlayerInfo(3, 3);
     }
 
     private void ChangeTurnUI(int playerId)
     {
-        playerId = 0;
-        Image image = TurnUI.GetComponent<Image>();
+        Image image = turnUi.GetComponent<Image>();
         for (int i = 0; i < TurnImage.Length; i++)
         {
             if (playerId == i)
             {
                 image.sprite = TurnImage[i];
-                UpdateAmountOfCards(playerId);
+                PlayerInfo(playerId);
             }    
         }
     }
 
-    private void UpdateAmountOfCards(int playerId)
+    private void PlayerInfo(int playerId)
     {
-        for (int i = 0; i < PlayerCards.Length; i++)
+        for (int i = 0; i < AmountOfPlayerCards.Length; i++)
         {
             if (playerId == i)
             {
-                PlayerCards[i].text= Cards.ToString();
+                AmountOfPlayerCards[i].text= Cards.ToString();
+            }
+        }
+
+        for (int i = 0; i < AmountOfLivesText.Length; i++)
+        {
+            if (playerId == i)
+            {
+                AmountOfLivesText[i].text = Lives.ToString();
             }
         }
     }
 
-    private void ShowWinUI(int playerId)
+    private void ShowWinUi(int playerId)
     {
-        Image winUI = WinUIImage.GetComponent<Image>();
+        Image winUI = winUiImage.GetComponent<Image>();
         for (int i = 0; i < WinUI.Length; i++)
         {
-            if (playerId == 1)
+            if (playerId == i)
             {
                 winUI.sprite = WinUI[i];
             }
         }
     }
     
-    private void AmountOfCards(int amountOfCards)
+    private void SetPlayerInfo(int amountOfCards, int Playerlives)
     {
-        TurnUICards.text = amountOfCards.ToString();
+        Image cardImage = turnCards.GetComponent<Image>();
+        cardImage.fillAmount = (float) (amountOfCards / 4.0);
+        TurnLives.text = Playerlives.ToString();
         Cards = amountOfCards;
+        Lives = Playerlives;
     }
 
     public void Click()
     {
-       ChangeTurnUI(0);
-       ReadyCheckButton.SetActive(false);
+       ChangeTurnUI(1);
+       readyCheckButton.SetActive(false);
        //Start Game
     }
 }
