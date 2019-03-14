@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
@@ -8,8 +7,8 @@ public class PlayerManager : MonoBehaviour
 
     public static PlayerManager instance { get; private set; }
 
-    private int maxPlayers = 4;
-    private int currentPlayerIndex = 0;
+    private int _maxPlayers = 4;
+    private int _currentPlayerIndex = -1;
 
     private List<Player> players = new List<Player>();
 
@@ -35,22 +34,27 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        TurnManager.instance.OnTurnAdvanced.AddListener(OnTurnAdvanced);
+    }
+
     public void SetMaxPlayers(int newMaxPlayers)
     {
     
-        if (maxPlayers > MAX_ALLOWED_PLAYERS_ON_GAME_BOARD)
+        if (_maxPlayers > MAX_ALLOWED_PLAYERS_ON_GAME_BOARD)
         {
             Debug.LogError("Invalid player number, number too high");
             return;
         }
 
-        if (maxPlayers < 1)
+        if (_maxPlayers < 1)
         {
             Debug.LogError("Invalid player number, number too low");
             return;
         }
 
-        maxPlayers = newMaxPlayers;
+        _maxPlayers = newMaxPlayers;
     }
 
     public void AddNewPlayer(Player newPlayer)
@@ -67,13 +71,16 @@ public class PlayerManager : MonoBehaviour
     public void OnTurnAdvanced()
     {
     
-        currentPlayerIndex++;
+        _currentPlayerIndex++;
 
-        if (currentPlayerIndex > maxPlayers - 1)
+        if (_currentPlayerIndex > _maxPlayers - 1 || _currentPlayerIndex < 0)
         {
-            currentPlayerIndex = 0;
+            _currentPlayerIndex = 0;
         }
-
+        
+        Debug.Log("it's player " + (_currentPlayerIndex + 1) + "'s turn!");
+    }
+    
     public Player GetPlayerByIndex(int playerIndex)
     {
 
@@ -82,7 +89,7 @@ public class PlayerManager : MonoBehaviour
             return null;
         }
 
-        if (playerIndex < maxPlayers)
+        if (playerIndex < _maxPlayers)
         {
             return null;
         }
@@ -93,9 +100,9 @@ public class PlayerManager : MonoBehaviour
     public Player GetCurrentPlayer()
     {
     
-        if (players[currentPlayerIndex] != null)
+        if (players[_currentPlayerIndex] != null)
         {
-            return players[currentPlayerIndex];
+            return players[_currentPlayerIndex];
         }
 
         return null;
