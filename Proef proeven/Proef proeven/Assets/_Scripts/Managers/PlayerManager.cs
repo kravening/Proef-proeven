@@ -14,6 +14,7 @@ public class PlayerManager : MonoBehaviour
 
     private void Awake()
     {
+    
         if (instance != null && instance != this)
         {
             Destroy(this);
@@ -26,6 +27,7 @@ public class PlayerManager : MonoBehaviour
 
     private void OnDestroy()
     {
+    
         if (instance == this)
         {
             instance = null;
@@ -39,6 +41,7 @@ public class PlayerManager : MonoBehaviour
 
     public void SetMaxPlayers(int newMaxPlayers)
     {
+    
         if (_maxPlayers > MAX_ALLOWED_PLAYERS_ON_GAME_BOARD)
         {
             Debug.LogError("Invalid player number, number too high");
@@ -56,6 +59,7 @@ public class PlayerManager : MonoBehaviour
 
     public void AddNewPlayer(Player newPlayer)
     {
+    
         players.Add(newPlayer);
 
         for (int i = 0; i < players.Count; i++)
@@ -66,16 +70,17 @@ public class PlayerManager : MonoBehaviour
 
     public void OnTurnAdvanced()
     {
+    
         _currentPlayerIndex++;
 
         if (_currentPlayerIndex > _maxPlayers - 1 || _currentPlayerIndex < 0)
         {
             _currentPlayerIndex = 0;
         }
-
+        
         Debug.Log("it's player " + (_currentPlayerIndex + 1) + "'s turn!");
     }
-
+    
     public Player GetPlayerByIndex(int playerIndex)
     {
 
@@ -94,6 +99,7 @@ public class PlayerManager : MonoBehaviour
 
     public Player GetCurrentPlayer()
     {
+    
         if (players[_currentPlayerIndex] != null)
         {
             return players[_currentPlayerIndex];
@@ -101,6 +107,5 @@ public class PlayerManager : MonoBehaviour
 
         return null;
     }
-
 
 }
