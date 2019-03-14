@@ -1,37 +1,52 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public class playerBehaviour : MonoBehaviour
+public class PlayerBehaviour : MonoBehaviour
 {
     public AnimationCurve _heightAnimationCurve;
 
+    private bool isAnimating = false;
+
+    public void Update()
+    {
+        if (Input.anyKeyDown)
+        {
+            MovePlayer(new Vector3(transform.position.x + 1, transform.position.y, transform.position.z));
+        }
+    }
+
     public void MovePlayer(Vector3 toPosition)
     {
+        if (isAnimating)
+        {
+            return;
+        }
         StartCoroutine(MovePlayerCoroutine(toPosition));
     }
 
     private IEnumerator MovePlayerCoroutine(Vector3 nextPosition)
     {
-        transform.position = nextPosition;
         float timer = 0;
-        
+        isAnimating = true;
         Vector3 startPosition = transform.position;
 
         while (timer < 1)
         {
             timer += Time.deltaTime;
 
-            Vector3 addHeightToPosition = new Vector3(transform.position.x, startPosition.y + _heightAnimationCurve.Evaluate(timer), transform.position.z);
-            Vector3 addHeightToNextPosition = new Vector3(nextPosition.x, nextPosition.y + _heightAnimationCurve.Evaluate(timer), nextPosition.z);
+            Vector3 differenceVector = startPosition - nextPosition;
 
-            Vector3.Lerp(addHeightToPosition, addHeightToNextPosition, 1f);
+            Vector3 LerpedVector = startPosition - (differenceVector * timer);
 
-            yield return new WaitForSeconds(0);
+            Vector3 finalVector = new Vector3(LerpedVector.x, startPosition.y + _heightAnimationCurve.Evaluate(timer), LerpedVector.z);
+
+            transform.position = finalVector;
+
+            yield return null;
         }
 
         transform.position = nextPosition;
-
-        yield return new WaitForEndOfFrame();
+        isAnimating = false;
     }
 
     public void DestroyPlayer()

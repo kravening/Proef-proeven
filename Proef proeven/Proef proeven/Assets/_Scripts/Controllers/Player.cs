@@ -5,10 +5,14 @@ public class Player : MonoBehaviour
     private const int DEFAULT_POSITION_HEIGHT = 1;
 
     private PlayerID _playerID = new PlayerID();
-    private GridPosition _playerPosition = new GridPosition();
-    private playerBehaviour _playerBehaviour = new playerBehaviour();
+    private GridPosition _playerPosition;
+    private PlayerBehaviour _playerBehaviour;
 
-
+    private void Awake()
+    {
+        _playerPosition = GetComponent<GridPosition>();
+        _playerBehaviour = GetComponent<PlayerBehaviour>();
+    }
     private void Start()
     {
         PlayerManager.instance.AddNewPlayer(this);
