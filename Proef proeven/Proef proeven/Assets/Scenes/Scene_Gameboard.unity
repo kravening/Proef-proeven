@@ -121,7 +121,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 205489344}
-  - component: {fileID: 205489343}
   - component: {fileID: 205489345}
   m_Layer: 0
   m_Name: GameBoard
@@ -130,22 +129,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &205489343
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 205489342}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6698fa6d673342f4db860d8df2f4783a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  columns: 0
-  rows: 0
-  tile: {fileID: 1572363882722396266, guid: e5032a1c5b7eee147aedbb445fb49855, type: 3}
-  card: {fileID: 3435969863737047813, guid: beff01d7eab7b1549aa94791f17d9330, type: 3}
 --- !u!4 &205489344
 Transform:
   m_ObjectHideFlags: 0
