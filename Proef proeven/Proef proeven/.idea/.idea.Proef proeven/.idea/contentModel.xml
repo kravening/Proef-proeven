@@ -9,6 +9,7 @@
         <e p="_Scripts" t="Include">
           <e p="Gameboard.cs" t="Include" />
           <e p="Grid.cs" t="Include" />
+          <e p="PlayerBase.cs" t="Include" />
           <e p="Tile.cs" t="Include" />
         </e>
         <e p="Demigiant" t="Include">
