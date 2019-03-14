@@ -11,10 +11,11 @@ public class PlayerManager : MonoBehaviour
     private int maxPlayers = 4;
     private int currentPlayerIndex = 0;
 
-    private List<GameObject> players = new List<GameObject>(); //TODO: change gameObject list to the player class
+    private List<Player> players = new List<Player>();
 
     private void Awake()
     {
+    
         if (instance != null && instance != this)
         {
             Destroy(this);
@@ -27,6 +28,7 @@ public class PlayerManager : MonoBehaviour
 
     private void OnDestroy()
     {
+    
         if (instance == this)
         {
             instance = null;
@@ -35,6 +37,7 @@ public class PlayerManager : MonoBehaviour
 
     public void SetMaxPlayers(int newMaxPlayers)
     {
+    
         if (maxPlayers > MAX_ALLOWED_PLAYERS_ON_GAME_BOARD)
         {
             Debug.LogError("Invalid player number, number too high");
@@ -50,22 +53,28 @@ public class PlayerManager : MonoBehaviour
         maxPlayers = newMaxPlayers;
     }
 
-    public void AddNewPlayer(GameObject newPlayer)
+    public void AddNewPlayer(Player newPlayer)
     {
+    
         players.Add(newPlayer);
+
+        for (int i = 0; i < players.Count; i++)
+        {
+            players[i].SetPlayerID(i);
+        }
     }
 
-    public void OnTurnAdvanced() //TODO: call this when an event from the turn manager starts.
+    public void OnTurnAdvanced()
     {
+    
         currentPlayerIndex++;
 
         if (currentPlayerIndex > maxPlayers - 1)
         {
             currentPlayerIndex = 0;
         }
-    }
 
-    public GameObject GetPlayerByIndex(int playerIndex)
+    public Player GetPlayerByIndex(int playerIndex)
     {
 
         if (playerIndex < 0)
@@ -81,8 +90,9 @@ public class PlayerManager : MonoBehaviour
         return players[playerIndex];
     }
 
-    public GameObject GetCurrentPlayer()
+    public Player GetCurrentPlayer()
     {
+    
         if (players[currentPlayerIndex] != null)
         {
             return players[currentPlayerIndex];
@@ -90,6 +100,5 @@ public class PlayerManager : MonoBehaviour
 
         return null;
     }
-
 
 }

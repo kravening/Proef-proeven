@@ -7,6 +7,11 @@ public class Player : MonoBehaviour
     private PlayerID playerID = new PlayerID();
     private GridPosition playerPosition = new GridPosition();
 
+    private void Start()
+    {
+        PlayerManager.instance.AddNewPlayer(this);
+    }
+
     public void SetPlayerID(int newPlayerID)
     {
         playerID.SetPlayerID(newPlayerID);
@@ -20,6 +25,7 @@ public class Player : MonoBehaviour
     public void SetPlayerGridPosition(int x, int y)
     {
         bool positionChanged = false;
+
         if (playerPosition.x != x)
         {
             playerPosition.x = x;
