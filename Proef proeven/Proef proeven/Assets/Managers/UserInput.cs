@@ -1,25 +1,32 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class UserInput : MonoBehaviour
+namespace Managers
 {
-
-    // Update is called once per frame
-    void Update()
+    public class UserInputManager : MonoBehaviour
     {
-        Tap();
-    }
 
-    public void Tap()
-    {
-        if (Input.GetMouseButtonDown(0))
+        // Update is called once per frame
+        void Update()
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-            if (Physics.Raycast(ray, out hit))
+            Tap();
+        }
+
+        public void Tap()
+        {
+            if (Input.GetMouseButtonDown(0))
             {
-                hit.transform.GetComponent<Interactable>().Interact();
+                if (Camera.main == null)
+                {
+                    return;
+                }
+
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                RaycastHit hit;
+
+                if (Physics.Raycast(ray, out hit))
+                {
+                    hit.transform.GetComponent<OnClickInteraction>().Interact();
+                }
             }
         }
     }

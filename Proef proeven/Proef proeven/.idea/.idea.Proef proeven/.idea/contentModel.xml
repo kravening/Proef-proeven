@@ -1,13 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ContentModelStore">
-    <e p="C:\Users\Xonar\.Rider2018.3\system\extResources" t="IncludeRecursive" />
-    <e p="C:\Users\Xonar\.Rider2018.3\system\resharper-host\local\Transient\ReSharperHost\v183\SolutionCaches\_Proef proeven.2066910584.00" t="ExcludeRecursive" />
-    <e p="C:\Users\Xonar\OneDrive\Documents\Proef-proeven\Proef proeven\Proef proeven" t="IncludeRecursive">
+    <e p="C:\Users\kravening\.Rider2018.3\system\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\kravening\.Rider2018.3\system\resharper-host\local\Transient\ReSharperHost\v183\SolutionCaches\_Proef proeven.300972785.00" t="ExcludeRecursive" />
+    <e p="C:\Users\kravening\Documents\Proef-proeven\Proef proeven\Proef proeven" t="IncludeRecursive">
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
         <e p="_Scripts" t="Include">
+          <e p="Behaviours" t="Include">
+            <e p="BattleBehaviour.cs" t="Include" />
+            <e p="playerBehaviour.cs" t="Include" />
+          </e>
+          <e p="Card.cs" t="Include" />
+          <e p="Controllers" t="Include">
+            <e p="Player.cs" t="Include" />
+          </e>
+          <e p="Data" t="Include">
+            <e p="GridPosition.cs" t="Include" />
+            <e p="PlayerID.cs" t="Include" />
+          </e>
+          <e p="GameBoard.cs" t="Include" />
+          <e p="Grid.cs" t="Include" />
           <e p="Inventory.cs" t="Include" />
+          <e p="Managers" t="Include">
+            <e p="PlayerManager.cs" t="Include" />
+            <e p="TurnManager.cs" t="Include" />
+            <e p="UserInput.cs" t="Include" />
+          </e>
+          <e p="Object" t="Include">
+            <e p="Interactable.cs" t="Include" />
+          </e>
+          <e p="PlayerBase.cs" t="Include" />
+          <e p="Tile.cs" t="Include" />
+        </e>
+        <e p="Behaviours" t="Include">
+          <e p="BattleBehaviour.cs" t="Include" />
+          <e p="playerBehaviour.cs" t="Include" />
+        </e>
+        <e p="Controllers" t="Include">
+          <e p="Player.cs" t="Include" />
+        </e>
+        <e p="Data" t="Include">
+          <e p="GridPosition.cs" t="Include" />
+          <e p="PlayerID.cs" t="Include" />
         </e>
         <e p="Demigiant" t="Include">
           <e p="DOTween" t="Include">
@@ -22,6 +57,17 @@
             </e>
             <e p="readme.txt" t="Include" />
           </e>
+        </e>
+        <e p="Managers" t="Include">
+          <e p="PlayerManager.cs" t="Include" />
+          <e p="TurnManager.cs" t="Include" />
+          <e p="UserInput.cs" t="Include" />
+        </e>
+        <e p="Object" t="Include">
+          <e p="Interactable.cs" t="Include" />
+        </e>
+        <e p="TempScriptfolder" t="Include">
+          <e p="TileInteraction.cs" t="Include" />
         </e>
       </e>
       <e p="Library" t="ExcludeRecursive" />

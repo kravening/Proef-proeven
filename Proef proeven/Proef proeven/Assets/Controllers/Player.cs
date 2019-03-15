@@ -1,74 +1,79 @@
-﻿using UnityEngine;
+﻿using Behaviours;
+using Managers;
+using UnityEngine;
 
-public class Player : MonoBehaviour
+namespace Controllers
 {
-    private const int DEFAULT_POSITION_HEIGHT = 1;
-
-    private PlayerID _playerID = new PlayerID();
-    private GridPosition _playerPosition;
-    private PlayerBehaviour _playerBehaviour;
-
-    private void Awake()
+    public class Player : MonoBehaviour
     {
-        _playerPosition = GetComponent<GridPosition>();
-        _playerBehaviour = GetComponent<PlayerBehaviour>();
-    }
-    private void Start()
-    {
-        PlayerManager.instance.AddNewPlayer(this);
-    }
+        private const int DEFAULT_POSITION_HEIGHT = 1;
 
-    public void SetPlayerID(int newPlayerID)
-    {
-        _playerID.SetPlayerID(newPlayerID);
-    }
+        private PlayerID _playerID = new PlayerID();
+        private GridPosition _playerPosition;
+        private PlayerBehaviour _playerBehaviour;
 
-    public int GetPlayerID()
-    {
-        return _playerID.GetPlayerID();
-    }
-
-    public void SetPlayerGridPosition(int x, int y)
-    {
-        bool positionChanged = false;
-
-        if (_playerPosition.x != x)
+        private void Awake()
         {
-            _playerPosition.x = x;
-            positionChanged = true;
+            _playerPosition = GetComponent<GridPosition>();
+            _playerBehaviour = GetComponent<PlayerBehaviour>();
+        }
+        private void Start()
+        {
+            PlayerManager.instance.AddNewPlayer(this);
         }
 
-        if (_playerPosition.y != y)
+        public void SetPlayerID(int newPlayerID)
         {
-            _playerPosition.y = y;
-            positionChanged = true;
+            _playerID.SetPlayerID(newPlayerID);
         }
 
-        if (positionChanged)
+        public int GetPlayerID()
         {
-            OnPositionChanged();
+            return _playerID.GetPlayerID();
         }
-    }
 
-    public GridPosition GetPlayerGridPosition()
-    {
-        return _playerPosition;
-    }
+        public void SetPlayerGridPosition(int x, int y)
+        {
+            bool positionChanged = false;
 
-    private void OnPositionChanged()// tell the movement behaviour to move to the new coordinates
-    {
-        _playerBehaviour.MovePlayer(new Vector3(_playerPosition.x, DEFAULT_POSITION_HEIGHT ,_playerPosition.y)); // kinda pseudo code
-        //TODO: Get correct vec3 position from the grid.
-    }
+            if (_playerPosition.x != x)
+            {
+                _playerPosition.x = x;
+                positionChanged = true;
+            }
 
-    public int BattleNumberGenrator()
-    {
-        return Mathf.FloorToInt(Random.Range(1, 10));
-    }
+            if (_playerPosition.y != y)
+            {
+                _playerPosition.y = y;
+                positionChanged = true;
+            }
 
-    public void DestroyPlayer()
-    {
-        _playerBehaviour.DestroyPlayer();
+            if (positionChanged)
+            {
+                OnPositionChanged();
+            }
+        }
 
+        public GridPosition GetPlayerGridPosition()
+        {
+            return _playerPosition;
+        }
+
+        private void OnPositionChanged()// tell the movement behaviour to move to the new coordinates
+        {
+            _playerBehaviour.MovePlayer(new Vector3(_playerPosition.x, DEFAULT_POSITION_HEIGHT, _playerPosition.y)); // kinda pseudo code
+            //TODO: Get correct vec3 position from the grid.
+        }
+
+        public int BattleNumberGenerator()
+        {
+            return Mathf.FloorToInt(Random.Range(1, 10));
+        }
+
+        public void DestroyPlayer()
+        {
+            _playerBehaviour.DestroyPlayer();
+
+        }
     }
 }

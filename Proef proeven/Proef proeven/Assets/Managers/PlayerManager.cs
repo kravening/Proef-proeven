@@ -1,111 +1,115 @@
 ﻿using System.Collections.Generic;
+using Controllers;
 using UnityEngine;
 
-public class PlayerManager : MonoBehaviour
+namespace Managers
 {
-    private const int MAX_ALLOWED_PLAYERS_ON_GAME_BOARD = 4;
-
-    public static PlayerManager instance { get; private set; }
-
-    private int _maxPlayers = 4;
-    private int _currentPlayerIndex = -1;
-
-    private List<Player> players = new List<Player>();
-
-    private void Awake()
+    public class PlayerManager : MonoBehaviour
     {
-    
-        if (instance != null && instance != this)
-        {
-            Destroy(this);
-        }
-        else
-        {
-            instance = this;
-        }
-    }
+        private const int MAX_ALLOWED_PLAYERS_ON_GAME_BOARD = 4;
 
-    private void OnDestroy()
-    {
-    
-        if (instance == this)
-        {
-            instance = null;
-        }
-    }
+        public static PlayerManager instance { get; private set; }
 
-    private void Start()
-    {
-        TurnManager.instance.OnTurnAdvanced.AddListener(OnTurnAdvanced);
-    }
+        private int _maxPlayers = 4;
+        private int _currentPlayerIndex = -1;
 
-    public void SetMaxPlayers(int newMaxPlayers)
-    {
-    
-        if (_maxPlayers > MAX_ALLOWED_PLAYERS_ON_GAME_BOARD)
+        private List<Player> players = new List<Player>();
+
+        private void Awake()
         {
-            Debug.LogError("Invalid player number, number too high");
-            return;
+
+            if (instance != null && instance != this)
+            {
+                Destroy(this);
+            }
+            else
+            {
+                instance = this;
+            }
         }
 
-        if (_maxPlayers < 1)
+        private void OnDestroy()
         {
-            Debug.LogError("Invalid player number, number too low");
-            return;
+
+            if (instance == this)
+            {
+                instance = null;
+            }
         }
 
-        _maxPlayers = newMaxPlayers;
-    }
-
-    public void AddNewPlayer(Player newPlayer)
-    {
-    
-        players.Add(newPlayer);
-
-        for (int i = 0; i < players.Count; i++)
+        private void Start()
         {
-            players[i].SetPlayerID(i);
+            TurnManager.instance.OnTurnAdvanced.AddListener(OnTurnAdvanced);
         }
-    }
 
-    public void OnTurnAdvanced()
-    {
-    
-        _currentPlayerIndex++;
-
-        if (_currentPlayerIndex > _maxPlayers - 1 || _currentPlayerIndex < 0)
+        public void SetMaxPlayers(int newMaxPlayers)
         {
-            _currentPlayerIndex = 0;
+
+            if (_maxPlayers > MAX_ALLOWED_PLAYERS_ON_GAME_BOARD)
+            {
+                Debug.LogError("Invalid player number, number too high");
+                return;
+            }
+
+            if (_maxPlayers < 1)
+            {
+                Debug.LogError("Invalid player number, number too low");
+                return;
+            }
+
+            _maxPlayers = newMaxPlayers;
         }
-        
-        Debug.Log("it's player " + (_currentPlayerIndex + 1) + "'s turn!");
-    }
-    
-    public Player GetPlayerByIndex(int playerIndex)
-    {
 
-        if (playerIndex < 0)
+        public void AddNewPlayer(Player newPlayer)
         {
+
+            players.Add(newPlayer);
+
+            for (int i = 0; i < players.Count; i++)
+            {
+                players[i].SetPlayerID(i);
+            }
+        }
+
+        public void OnTurnAdvanced()
+        {
+
+            _currentPlayerIndex++;
+
+            if (_currentPlayerIndex > _maxPlayers - 1 || _currentPlayerIndex < 0)
+            {
+                _currentPlayerIndex = 0;
+            }
+
+            Debug.Log("it's player " + (_currentPlayerIndex + 1) + "'s turn!");
+        }
+
+        public Player GetPlayerByIndex(int playerIndex)
+        {
+
+            if (playerIndex < 0)
+            {
+                return null;
+            }
+
+            if (playerIndex < _maxPlayers)
+            {
+                return null;
+            }
+
+            return players[playerIndex];
+        }
+
+        public Player GetCurrentPlayer()
+        {
+
+            if (players[_currentPlayerIndex] != null)
+            {
+                return players[_currentPlayerIndex];
+            }
+
             return null;
         }
 
-        if (playerIndex < _maxPlayers)
-        {
-            return null;
-        }
-
-        return players[playerIndex];
     }
-
-    public Player GetCurrentPlayer()
-    {
-    
-        if (players[_currentPlayerIndex] != null)
-        {
-            return players[_currentPlayerIndex];
-        }
-
-        return null;
-    }
-
 }

@@ -1,57 +1,61 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
 
-public class TurnManager : MonoBehaviour
+namespace Managers
 {
-
-    public static TurnManager instance { get; private set; }
-
-    private int _currentTurn = 1;
-
-    public UnityEvent OnTurnAdvanced;
-
-    private void Awake()
+    public class TurnManager : MonoBehaviour
     {
-        if (instance != null && instance != this)
+
+        public static TurnManager instance { get; private set; }
+
+        private int _currentTurn = 1;
+
+        public UnityEvent OnTurnAdvanced;
+
+        private void Awake()
         {
-            Destroy(this);
+            if (instance != null && instance != this)
+            {
+                Destroy(this);
+            }
+            else
+            {
+                instance = this;
+            }
+
+            if (OnTurnAdvanced == null)
+            {
+                OnTurnAdvanced = new UnityEvent();
+            }
         }
-        else
+
+        private void Start()
         {
-            instance = this;
+            OnTurnAdvanced.AddListener(IncrementCurrentTurn);
         }
 
-        if (OnTurnAdvanced == null)
+        private void OnDestroy()
         {
-            OnTurnAdvanced = new UnityEvent();
+            if (instance == this)
+            {
+                instance = null;
+            }
         }
-    }
 
-    private void Start()
-    {
-        OnTurnAdvanced.AddListener(IncrementCurrentTurn);
-    }
-
-    private void OnDestroy()
-    {
-        if (instance == this)
+        public void AdvanceTurn()
         {
-            instance = null;
+            OnTurnAdvanced.Invoke();
+        }
+
+        private void IncrementCurrentTurn()
+        {
+            _currentTurn++;
+        }
+
+        public int GetCurrentTurn()
+        {
+            return _currentTurn;
         }
     }
 
-    public void AdvanceTurn()
-    {
-        OnTurnAdvanced.Invoke();
-    }
-
-    private void IncrementCurrentTurn()
-    {
-        _currentTurn++;
-    }
-
-    public int GetCurrentTurn()
-    {
-        return _currentTurn;
-    }
 }

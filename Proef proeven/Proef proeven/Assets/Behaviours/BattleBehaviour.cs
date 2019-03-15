@@ -1,21 +1,25 @@
-﻿using UnityEngine;
+﻿using Controllers;
+using UnityEngine;
 
-public class BattleBehaviour : MonoBehaviour
+namespace Behaviours
 {
-    public void Battle(Player playerA, Player playerB)
+    public class BattleBehaviour : MonoBehaviour
     {
-        int playerACard = playerA.BattleNumberGenrator();
-        int playerBCard = playerB.BattleNumberGenrator();
+        public void Battle(Player playerA, Player playerB)
+        {
+            int playerACard = playerA.BattleNumberGenerator();
+            int playerBCard = playerB.BattleNumberGenerator();
 
-        if (playerACard > playerBCard)
-        {
-            Debug.Log("player " + playerA.GetPlayerID() + " Wins");
-            playerA.DestroyPlayer();
-        }
-        else
-        {
-            Debug.Log("player " + playerB.GetPlayerID() + " Wins");
-            playerB.DestroyPlayer();
+            if (playerACard > playerBCard)
+            {
+                Debug.Log("player " + playerA.GetPlayerID() + " Wins");
+                playerA.DestroyPlayer();
+            }
+            else
+            {
+                Debug.Log("player " + playerB.GetPlayerID() + " Wins");
+                playerB.DestroyPlayer();
+            }
         }
     }
 }
