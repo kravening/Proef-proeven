@@ -11,5 +11,4 @@ public class PlayerBase : MonoBehaviour
         get { return _currentID; }
         set { _currentID = value; }
     }
-    
 }
