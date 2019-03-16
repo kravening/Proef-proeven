@@ -38,6 +38,7 @@ public abstract class Grid : MonoBehaviour
          {
             GameObject spawnedTile = Instantiate(tile, new Vector3(i, 0, j), Quaternion.identity);
             tiles[i, j] = spawnedTile.GetComponent<Tile>();
+             spawnedTile.gameObject.transform.parent = transform;
          }
       }
    }

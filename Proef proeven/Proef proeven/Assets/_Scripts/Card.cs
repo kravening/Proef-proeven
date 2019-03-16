@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Card : MonoBehaviour
 {
-    public GameObject cardSprite;
     private int _currentNumber;
 
     private void Start()
