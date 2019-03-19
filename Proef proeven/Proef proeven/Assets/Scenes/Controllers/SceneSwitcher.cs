@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Controllers;
 
 namespace Controllers
 {
@@ -28,7 +29,7 @@ namespace Controllers
 				Instance = null;
 			}
 		}
-
+		
 		private void Update()
 		{
 			KeyboardEvent();
@@ -39,6 +40,11 @@ namespace Controllers
 			{
 				LoadScene();
 			}
+		}
+
+		public void Quit()
+		{
+			Application.Quit();
 		}
 
 		public void LoadScene()
