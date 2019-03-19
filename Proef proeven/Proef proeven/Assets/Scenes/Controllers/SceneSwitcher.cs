@@ -1,7 +1,5 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
-using Controllers;
 
 namespace Controllers
 {
@@ -9,6 +7,7 @@ namespace Controllers
 	{
 		private const string SCENE_MAIN = "MainScene";
 		public static SceneSwitcher Instance;
+		
 
 		private void Awake()
 		{
