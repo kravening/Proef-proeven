@@ -70,11 +70,6 @@ namespace Controllers
             PlayerManager.instance.PlayerMoved();
         }
 
-        public int BattleNumberGenerator()
-        {
-            return Mathf.FloorToInt(Random.Range(1, 10));
-        }
-
         public void DestroyPlayer()
         {
             _playerBehaviour.DestroyPlayer();

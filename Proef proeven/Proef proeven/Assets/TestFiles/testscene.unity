@@ -452,7 +452,7 @@ ParticleSystemRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -5
   m_RenderMode: 2
-  m_SortMode: 1
+  m_SortMode: 2
   m_MinParticleSize: 0
   m_MaxParticleSize: 0.5
   m_CameraVelocityScale: 0
@@ -667,8 +667,8 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 1, g: 0.93725497, b: 0.48235297, a: 0.39215687}
-        key1: {r: 1, g: 0.93725497, b: 0.48235297, a: 0.39215687}
+        key0: {r: 1, g: 0.93725497, b: 0.48235297, a: 1}
+        key1: {r: 1, g: 0.93725497, b: 0.48235297, a: 1}
         key2: {r: 0.5529412, g: 0.8313726, b: 0.9568628, a: 0}
         key3: {r: 0.9490197, g: 0.6, b: 0.47450984, a: 0}
         key4: {r: 0.5882353, g: 0.7960785, b: 0.6156863, a: 0}
@@ -5346,8 +5346,8 @@ GameObject:
   - component: {fileID: 943521786}
   - component: {fileID: 943521790}
   - component: {fileID: 943521791}
-  - component: {fileID: 943521785}
   - component: {fileID: 943521792}
+  - component: {fileID: 943521785}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -5364,7 +5364,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 943521784}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60948e0b7aba4f84fa0626eacad929bd, type: 3}
+  m_Script: {fileID: 11500000, guid: 6698fa6d673342f4db860d8df2f4783a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   columns: 0
@@ -5372,9 +5372,9 @@ MonoBehaviour:
   tile: {fileID: 3476838416139226109, guid: 635668a44b600674fbca1f0465d4b0ef, type: 3}
   card: {fileID: 879990871060123879, guid: cc09a5d84aa673b4a98ecca08de439a5, type: 3}
   playerBases:
-  - {fileID: 3952625120829636678, guid: b5b3d44363c1c434ab5d736d7146f24a, type: 3}
   - {fileID: 6941855196296823308, guid: 2cb8ff6745544ae4d964ff63bc52ea6c, type: 3}
   - {fileID: 566062926250374848, guid: f282cb02e0062814e9da9cb12823f328, type: 3}
+  - {fileID: 3952625120829636678, guid: b5b3d44363c1c434ab5d736d7146f24a, type: 3}
   - {fileID: 898567471783081322, guid: 211ff864c5a0937469a61e8119f2cbc4, type: 3}
   tileColors:
   - {r: 0.9568628, g: 0.9294118, b: 0.86666673, a: 0}

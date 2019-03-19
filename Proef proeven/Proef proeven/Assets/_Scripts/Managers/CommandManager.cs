@@ -62,15 +62,5 @@ namespace Managers
                 currentPlayer.SetPlayerGridPosition(nextGridCoordinates.x, nextGridCoordinates.y);
             }
         }
-
-        private void GrabCard()
-        {
-
-        }
-
-        private void AttackBase()
-        {
-
-        }
     }
 }
