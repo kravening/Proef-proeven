@@ -28,7 +28,7 @@ namespace Behaviours
 
             while (timer < 1)
             {
-                timer += Time.deltaTime;
+                timer += Time.deltaTime * 2;
 
                 Vector3 differenceVector = startPosition - nextPosition;
 

@@ -122,16 +122,18 @@ namespace Managers
         private IEnumerator MovementPhase()
         {
             // allow player to move here
-            yield return new WaitForSeconds(0);
+            yield return new WaitForSeconds(1f);
         }
 
         private IEnumerator EventPhase()
         {
             //check what tile player is on.
-            GridPosition currentPlayerPosition = PlayerManager.instance.GetCurrentPlayer().GetPlayerGridPosition();
-            GameObject tileObject = Gameboard.instance.tiles[currentPlayerPosition.x, currentPlayerPosition.y].GetItem();
+            GridCoordinates currentPlayerCoordinates = PlayerManager.instance.GetCurrentPlayer().GetPlayerGridCoordinates();
+            GameObject tileObject = Gameboard.instance.tiles[currentPlayerCoordinates.x, currentPlayerCoordinates.y].GetItem();
 
-            if (gameObject == null) // nothing to interact with on this tile
+            yield return new WaitForSeconds(.4f);
+
+            if (tileObject == null) // nothing to interact with on this tile
             {
                 SetNewState(Enums.GamePhase.RestPhase);
                 yield break;
@@ -139,9 +141,9 @@ namespace Managers
 
             if (tileObject?.GetComponent<PlayerBase>() == true) // a base has been found on this tile
             {
-                PlayerBase availablePlayerBase = tileObject.GetComponent<PlayerBase>();
+                PlayerBase availablePlayerBase = tileObject?.GetComponent<PlayerBase>();
 
-                if (availablePlayerBase.ID == PlayerManager.instance.GetCurrentPlayer().GetPlayerID()) // reached your own base on this tile
+                if (availablePlayerBase?.ID == PlayerManager.instance.GetCurrentPlayer().GetPlayerID()) // reached your own base on this tile
                 {
                     SetNewState(Enums.GamePhase.DefendPhase); // start defending your base
                     yield break;
@@ -165,8 +167,8 @@ namespace Managers
 
         private IEnumerator BattlePhase()
         {
-            GridPosition currentPlayerPosition = PlayerManager.instance.GetCurrentPlayer().GetPlayerGridPosition();
-            PlayerBase attackableBase = Gameboard.instance.tiles[currentPlayerPosition.x, currentPlayerPosition.y].GetItem().GetComponent<PlayerBase>();
+            GridCoordinates currentPlayerCoordinates = PlayerManager.instance.GetCurrentPlayer().GetPlayerGridCoordinates();
+            PlayerBase attackableBase = Gameboard.instance.tiles[currentPlayerCoordinates.x, currentPlayerCoordinates.y].GetItem().GetComponent<PlayerBase>();
             attackingCardPicked = false;
 
             // start battle animations
@@ -198,7 +200,18 @@ namespace Managers
 
         private IEnumerator PickupPhase()
         {
+            yield return new WaitForSeconds(.1f);
+            Player currentPlayer = PlayerManager.instance.GetCurrentPlayer();
+            Tile[,] allTiles = Gameboard.instance.tiles;
+            Tile currentTile = allTiles[currentPlayer.GetPlayerGridCoordinates().x,currentPlayer.GetPlayerGridCoordinates().y];
+
+
+            currentPlayer.AddCardToInventory(currentTile.GetItem().GetComponent<Card>().GetCardNumber());
+            currentTile.RemoveItem();
+
             yield return new WaitForSeconds(0);
+
+            SetNewState(Enums.GamePhase.RestPhase);
         }
 
 

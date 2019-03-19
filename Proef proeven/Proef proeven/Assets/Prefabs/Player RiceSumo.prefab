@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2622431228732798197}
   - component: {fileID: 8563491485231286717}
   - component: {fileID: 8022131347286831414}
+  - component: {fileID: 9209500905332060103}
   m_Layer: 0
   m_Name: Player RiceSumo
   m_TagString: Untagged
@@ -105,6 +106,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   x: 0
   y: 0
+--- !u!114 &9209500905332060103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5855433395800392006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 344c3acc2de200d40b07aa6d7c30ae96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cardList: 
 --- !u!1 &6594333872181427099
 GameObject:
   m_ObjectHideFlags: 0
@@ -172,7 +186,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: c3be8d9d8a229c94193d8b8d41d4d40c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

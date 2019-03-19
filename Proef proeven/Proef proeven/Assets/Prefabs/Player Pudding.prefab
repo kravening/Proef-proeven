@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4923831685100209701}
   - component: {fileID: 6142312614566478120}
   - component: {fileID: 635151215815653789}
+  - component: {fileID: 4163695249146439460}
   m_Layer: 0
   m_Name: Player Pudding
   m_TagString: Untagged
@@ -105,6 +106,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   x: 0
   y: 0
+--- !u!114 &4163695249146439460
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 253370620769963029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 344c3acc2de200d40b07aa6d7c30ae96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cardList: 
 --- !u!1001 &253370620977027966
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -171,7 +185,7 @@ PrefabInstance:
     - target: {fileID: 212894368359576140, guid: 8afad009c1bde1b4f817a65c14d0627c,
         type: 3}
       propertyPath: m_SortingOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 212894368359576140, guid: 8afad009c1bde1b4f817a65c14d0627c,
         type: 3}

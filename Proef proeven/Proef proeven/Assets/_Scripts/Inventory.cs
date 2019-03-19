@@ -4,32 +4,40 @@
 
 public class Inventory : MonoBehaviour
 {
-    private int[] _itemList;
+    public int[] _cardList;
 
     private void Awake()
     {
-        _itemList = new int[4];
+        _cardList = new int[4];
     }
 
     public int GetItemFromInventory(int index)
     {
-        return _itemList[index];
+        return _cardList[index];
     }
 
     public void AddItem(int newItem)
     {
-        for (int i = 0; i < _itemList.Length; i++)
+        bool cardSlotFound = false;
+        for (int i = 0; i < _cardList.Length; i++)
         {
-            if (_itemList[i] == 0)
+            if (_cardList[i] == 0)
             {
-                _itemList[i] = newItem;
+                _cardList[i] = newItem;
+                cardSlotFound = true;
+                break;
             }
+        }
+
+        if (cardSlotFound == false)
+        {
+            Debug.LogError("no more inventory slots");
         }
     }
 
-    public void RemoveItem(int index)
+    public void RemoveCard(int index)
     {
-        _itemList[index] = 0;
+        _cardList[index] = 0;
     }
     
 }

@@ -1,7 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using Controllers;
+﻿using Controllers;
 using Data;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Managers
@@ -36,9 +36,31 @@ namespace Managers
         {
             Player currentPlayer = PlayerManager.instance.GetCurrentPlayer();
 
-            currentPlayer.SetPlayerGridPosition((int)nextTile.transform.position.x,(int)nextTile.transform.position.z);
+            GridCoordinates currentGridCoordinates = currentPlayer.GetPlayerGridCoordinates();
 
-            BoardGameManager.instance.SetNewState(Enums.GamePhase.EventPhase);
+            GridCoordinates nextGridCoordinates = new GridCoordinates();
+            nextGridCoordinates.x = (int)nextTile.transform.position.x;
+            nextGridCoordinates.y = (int)nextTile.transform.position.z;
+
+            bool legalMoveFound = false;
+
+            if (currentGridCoordinates.x <= (nextGridCoordinates.x + 2) && currentGridCoordinates.x >= (nextGridCoordinates.x - 2) && currentGridCoordinates.y == nextGridCoordinates.y) // to move 2 tiles and not more in a straight line
+            {
+                legalMoveFound = true;
+            }
+            else if (currentGridCoordinates.y <= (nextGridCoordinates.y + 2) && currentGridCoordinates.y >= (nextGridCoordinates.y - 2) && currentGridCoordinates.x == nextGridCoordinates.x)
+            {
+                legalMoveFound = true;
+            }
+            else if (currentGridCoordinates.x <= (nextGridCoordinates.x + 1) && currentGridCoordinates.x >= (nextGridCoordinates.x - 1) && currentGridCoordinates.y <= (nextGridCoordinates.y + 1) && currentGridCoordinates.y >= (nextGridCoordinates.y - 1)) // check for diagonal move within 1 tile
+            {
+                legalMoveFound = true;
+            }
+
+            if (legalMoveFound)
+            {
+                currentPlayer.SetPlayerGridPosition(nextGridCoordinates.x, nextGridCoordinates.y);
+            }
         }
 
         private void GrabCard()

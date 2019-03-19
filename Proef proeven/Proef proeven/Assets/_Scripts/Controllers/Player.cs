@@ -9,7 +9,7 @@ namespace Controllers
         private const float DEFAULT_POSITION_HEIGHT = .5f;
 
         private PlayerID _playerID = new PlayerID();
-        private GridPosition _playerPosition;
+        private GridCoordinates _playerCoordinates = new GridCoordinates();
         private PlayerBehaviour _playerBehaviour;
         private Inventory _playerInventory;
 
@@ -17,8 +17,8 @@ namespace Controllers
 
         private void Awake()
         {
-            _playerPosition = GetComponent<GridPosition>();
             _playerBehaviour = GetComponent<PlayerBehaviour>();
+            _playerInventory = GetComponent<Inventory>();
         }
         private void Start()
         {
@@ -40,15 +40,15 @@ namespace Controllers
         {
             bool positionChanged = false;
 
-            if (_playerPosition.x != x)
+            if (_playerCoordinates.x != x)
             {
-                _playerPosition.x = x;
+                _playerCoordinates.x = x;
                 positionChanged = true;
             }
 
-            if (_playerPosition.y != y)
+            if (_playerCoordinates.y != y)
             {
-                _playerPosition.y = y;
+                _playerCoordinates.y = y;
                 positionChanged = true;
             }
 
@@ -58,14 +58,14 @@ namespace Controllers
             }
         }
 
-        public GridPosition GetPlayerGridPosition()
+        public GridCoordinates GetPlayerGridCoordinates()
         {
-            return _playerPosition;
+            return _playerCoordinates;
         }
 
         private void OnPositionChanged()// tell the movement behaviour to move to the new coordinates
         {
-            Vector3 tilePosition = Gameboard.instance.tiles[_playerPosition.x,_playerPosition.y].transform.position; // convert 2d array index to corresponding vector 3 pos
+            Vector3 tilePosition = Gameboard.instance.tiles[_playerCoordinates.x,_playerCoordinates.y].transform.position; // convert 2d array index to corresponding vector 3 pos
             _playerBehaviour.MovePlayer(new Vector3(tilePosition.x, DEFAULT_POSITION_HEIGHT, tilePosition.z));
             PlayerManager.instance.PlayerMoved();
         }

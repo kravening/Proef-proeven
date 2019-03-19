@@ -1,5 +1,6 @@
 ﻿using Controllers;
 using System.Collections.Generic;
+using Data;
 using UnityEngine;
 
 namespace Managers
@@ -86,7 +87,7 @@ namespace Managers
 
         public Player GetCurrentPlayer()
         {
-            Debug.Log(_currentPlayerIndex);
+
             if (players[_currentPlayerIndex] != null)
             {
                 return players[_currentPlayerIndex];
@@ -98,6 +99,7 @@ namespace Managers
         public void PlayerMoved()
         {
             _hasCurrentPlayerMovedThisTurn = true;
+            BoardGameManager.instance.SetNewState(Enums.GamePhase.EventPhase);
         }
 
         public bool HasPlayerMoved()
