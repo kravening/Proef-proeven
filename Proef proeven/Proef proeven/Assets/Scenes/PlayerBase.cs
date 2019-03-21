@@ -1,23 +1,33 @@
 ﻿using Controllers;
 using Managers;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class PlayerBase : MonoBehaviour
 {
-    [SerializeField]private int _baseHealth = 3;
+    [SerializeField] private int _baseHealth = 3;
     private int _currentID;
-    public Player _correspondingPlayer;
+    public Player correspondingPlayerPrefeb;
+    private Player _correspondingPlayer;
     private int _defendingCard;
 
-    private void Start()
+    private void Awake()
     {
         SpawnCorrespondingPlayer();
     }
 
+    private void LateUpdate()
+    {
+        SetPlayerInfo();
+    }
+
     private void SpawnCorrespondingPlayer()
     {
-       GameObject spawnedPlayer = Instantiate(_correspondingPlayer.gameObject,transform.position,_correspondingPlayer.gameObject.transform.rotation);
-       _currentID = spawnedPlayer.GetComponent<Player>().GetPlayerID();
+        GameObject spawnedPlayer = Instantiate(correspondingPlayerPrefeb.gameObject, transform.position,
+        correspondingPlayerPrefeb.gameObject.transform.rotation);
+        _correspondingPlayer = spawnedPlayer.GetComponent<Player>();
+        _currentID = spawnedPlayer.GetComponent<Player>().GetPlayerID();
+        Debug.Log(_currentID);
     }
 
     public void SetDefendingCard(int newDefendingCard)
@@ -44,6 +54,17 @@ public class PlayerBase : MonoBehaviour
             Debug.Log("Player " + ID + "died");
             PlayerManager.instance.DestroyPlayerByIndex(ID);
         }
+
+        SetPlayerInfo();
+    }
+
+    public void SetPlayerInfo()
+    {
+        //Debug.Log(_correspondingPlayerPrefeb.GetInventory()._currentAmountOfCardsinInventory + " " +  _correspondingPlayerPrefeb + " " + _correspondingPlayerPrefeb.GetInventory());
+        //
+        UIController.Instance.SetPlayerInfo(
+        PlayerManager.instance.GetCurrentPlayer().GetInventory()._currentAmountOfCardsinInventory, _baseHealth,
+        _currentID);
     }
 
     public int BaseHealth

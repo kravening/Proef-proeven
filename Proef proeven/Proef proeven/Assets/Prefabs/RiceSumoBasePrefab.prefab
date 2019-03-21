@@ -123,5 +123,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92b57a81bc623e9498c776fe8840da60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _correspondingPlayer: {fileID: 2622431228732798197, guid: c7f137e7610d72d45b5b2ddbadf41848,
+  _baseHealth: 3
+  correspondingPlayerPrefeb: {fileID: 2622431228732798197, guid: c7f137e7610d72d45b5b2ddbadf41848,
     type: 3}

@@ -46,7 +46,6 @@ namespace Managers
         {
             if (_currentGamePhase == newState)
             {
-                Debug.LogError("Trying to set the same state");
                 return;
             }
             _currentGamePhase = newState;
@@ -58,17 +57,16 @@ namespace Managers
             switch (_currentGamePhase)
             {
                 case Enums.GamePhase.None:
-
                     StartCoroutine(BoardSetUp());
                     break;
 
                 case Enums.GamePhase.NextTurn:
-
+                    
                     StartCoroutine(NextTurnPhase());
                     break;
 
                 case Enums.GamePhase.MovementPhase:
-
+                    
                     StartCoroutine(MovementPhase());
                     break;
 
@@ -93,13 +91,9 @@ namespace Managers
                     break;
 
                 case Enums.GamePhase.RestPhase:
-
                     // nothing happens here, but being here allows you to pass the turn.
                     break;
-
-
             }
-            Debug.Log("New state set" + " " + _currentGamePhase);
         }
 
         private IEnumerator BoardSetUp()
@@ -173,6 +167,9 @@ namespace Managers
 
             // start battle animations
             // open UI
+            
+            Debug.Log("kut2");
+            UIController.Instance.ShowSelectCardUi(true);
             while (attackingCardPicked == false)
             {
                 //wait for player to pick a card from UI.
@@ -194,8 +191,10 @@ namespace Managers
         private IEnumerator DefendPhase()
         {
             // place card on your base
+            Debug.Log("kut");
             yield return new WaitForSeconds(0);
             SetNewState(Enums.GamePhase.RestPhase);
+            UIController.Instance.ShowSelectCardUi(true);
         }
 
         private IEnumerator PickupPhase()
@@ -224,10 +223,6 @@ namespace Managers
 
         private void OnTurnAdvanced() // only allow turn to be advanced if there is no event going on after moving
         {
-            if (_currentGamePhase != Enums.GamePhase.RestPhase)
-            {
-                return;
-            }
             SetNewState(Enums.GamePhase.MovementPhase);
         }
 

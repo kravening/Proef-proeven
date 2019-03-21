@@ -15,7 +15,7 @@ namespace Managers
         private int _currentPlayerIndex = -1;
         private int _currentPlayerCount = -1;
 
-        private bool _hasCurrentPlayerMovedThisTurn;
+        private bool _hasCurrentPlayerMovedThisTurn = true;
 
         private List<Player> players = new List<Player>();
 
@@ -63,7 +63,8 @@ namespace Managers
             {
                 _currentPlayerIndex = 0;
             }
-
+            
+            UIController.Instance.ChangeTurnUi(_currentPlayerIndex);
             _hasCurrentPlayerMovedThisTurn = false;
 
             Debug.Log("it's player " + (_currentPlayerIndex + 1) + "'s turn!");
@@ -87,6 +88,10 @@ namespace Managers
 
         public Player GetCurrentPlayer()
         {
+            if (_currentPlayerIndex == -1)
+            {
+                return players[0];
+            }
 
             if (players[_currentPlayerIndex] != null)
             {

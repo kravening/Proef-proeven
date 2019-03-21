@@ -8,7 +8,7 @@ namespace Managers
 
         public static TurnManager instance { get; private set; }
 
-        private int _currentTurn = 1;
+        private int _currentTurn = 0;
 
         public delegate void eventRaiser();
         public event eventRaiser OnTurnAdvanced;

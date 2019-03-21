@@ -19,11 +19,12 @@ namespace Controllers
         {
             _playerBehaviour = GetComponent<PlayerBehaviour>();
             _playerInventory = GetComponent<Inventory>();
+            PlayerManager.instance.AddNewPlayer(this);
         }
         private void Start()
         {
-            PlayerManager.instance.AddNewPlayer(this);
-            SetPlayerGridPosition((int)Gameboard.instance.GetPlayerStartingPos(_playerID.GetPlayerID()).x, (int)Gameboard.instance.GetPlayerStartingPos(_playerID.GetPlayerID()).y);
+            
+            SetPlayerStartingPosition((int)Gameboard.instance.GetPlayerStartingPos(_playerID.GetPlayerID()).x, (int)Gameboard.instance.GetPlayerStartingPos(_playerID.GetPlayerID()).y);
         }
 
         public void SetPlayerID(int newPlayerID)
@@ -34,6 +35,23 @@ namespace Controllers
         public int GetPlayerID()
         {
             return _playerID.GetPlayerID();
+        }
+
+        public void SetPlayerStartingPosition(int x, int y)
+        {
+
+
+            if (_playerCoordinates.x != x)
+            {
+                _playerCoordinates.x = x;
+           
+            }
+
+            if (_playerCoordinates.y != y)
+            {
+                _playerCoordinates.y = y;
+               
+            }
         }
 
         public void SetPlayerGridPosition(int x, int y)
@@ -86,9 +104,9 @@ namespace Controllers
             return _playerInventory.GetItemFromInventory(inventorySlot);
         }
 
-        public void AddCardToInventory(int card)
+        public void AddCardToInventory(int cardStrength)
         {
-            _playerInventory.AddItem(card);
+            _playerInventory.AddItem(cardStrength);
         }
 
         public void SetAttackingCard(int inventorySlot)
@@ -96,6 +114,12 @@ namespace Controllers
             _attackingCardValue = GetCardFromInventorySlot(inventorySlot);
             BoardGameManager.instance.PickedAttackingCard();
         }
+
+        public Inventory GetInventory()
+        {
+            return _playerInventory;
+        }
+
 
         public int GetAttackingCardValue()
         {

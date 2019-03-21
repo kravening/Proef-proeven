@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\Avis\.Rider2018.3\system\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\Avis\.Rider2018.3\system\resharper-host\local\Transient\ReSharperHost\v183\SolutionCaches\_Proef proeven.-489208225.00" t="ExcludeRecursive" />
+    <e p="C:\Users\Avis\Documents\Proef-proeven\Proef proeven\Proef proeven" t="IncludeRecursive">
+      <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
+      <e p="Assets" t="Include">
+        <e p="Demigiant" t="Include">
+          <e p="DOTween" t="Include">
+            <e p="Modules" t="Include">
+              <e p="DOTweenModuleAudio.cs" t="Include" />
+              <e p="DOTweenModulePhysics.cs" t="Include" />
+              <e p="DOTweenModulePhysics2D.cs" t="Include" />
+              <e p="DOTweenModuleSprite.cs" t="Include" />
+              <e p="DOTweenModuleUI.cs" t="Include" />
+              <e p="DOTweenModuleUnityVersion.cs" t="Include" />
+              <e p="DOTweenModuleUtils.cs" t="Include" />
+            </e>
+            <e p="readme.txt" t="Include" />
+          </e>
+        </e>
+        <e p="Scenes" t="Include">
+          <e p="Behaviours" t="Include">
+            <e p="BattleBehaviour.cs" t="Include" />
+            <e p="PlayerBehaviour.cs" t="Include" />
+          </e>
+          <e p="BoardGameManager.cs" t="Include" />
+          <e p="Card.cs" t="Include" />
+          <e p="Controllers" t="Include">
+            <e p="Player.cs" t="Include" />
+            <e p="SceneSwitcher.cs" t="Include" />
+            <e p="UIController.cs" t="Include" />
+          </e>
+          <e p="Data" t="Include">
+            <e p="CardSpriteDataManager.cs" t="Include" />
+            <e p="GridCoordinates.cs" t="Include" />
+            <e p="PlayerID.cs" t="Include" />
+          </e>
+          <e p="Enums.cs" t="Include" />
+          <e p="Gameboard.cs" t="Include" />
+          <e p="Grid.cs" t="Include" />
+          <e p="Inventory.cs" t="Include" />
+          <e p="Managers" t="Include">
+            <e p="CommandManager.cs" t="Include" />
+            <e p="PlayerManager.cs" t="Include" />
+            <e p="TurnManager.cs" t="Include" />
+            <e p="UserInputManager.cs" t="Include" />
+          </e>
+          <e p="Object" t="Include">
+            <e p="OnClickInteraction.cs" t="Include" />
+          </e>
+          <e p="PlayerBase.cs" t="Include" />
+          <e p="Tile.cs" t="Include" />
+          <e p="TileInteraction.cs" t="Include" />
+        </e>
+      </e>
+      <e p="Library" t="ExcludeRecursive" />
+      <e p="obj" t="ExcludeRecursive" />
+      <e p="packages" t="ExcludeRecursive" />
+      <e p="Proef proeven.sln" t="IncludeFlat" />
+      <e p="Temp" t="ExcludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+      </e>
+    </e>
+  </component>
+</project>
